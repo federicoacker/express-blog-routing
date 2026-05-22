@@ -40,7 +40,12 @@ function validatePost (post){
     } 
 
     for(const property of Object.entries(post)){
-        if (property[1].trim() === ""){
+        if(property[0] === "image"){
+            if(property[1].trim() === ""){
+                continue;
+            }
+        }
+        else if (property[1].trim() === ""){
             return null;
         }
     }

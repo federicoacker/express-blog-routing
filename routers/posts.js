@@ -1,5 +1,6 @@
 import { Router } from "express";
 import express from "express";
+import postsController from "../controllers/posts.js";
 
 const postsRouter = express.Router();
 
@@ -14,3 +15,5 @@ postsRouter.put("/:id", postsController.update);
 postsRouter.patch("/:id", postsController.modify);
 
 postsRouter.delete("/:id", postsController.destroy);
+
+export default postsRouter;

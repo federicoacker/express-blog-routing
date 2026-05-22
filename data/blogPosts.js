@@ -32,6 +32,9 @@ const blogPosts = [
 ]
 
 function validatePost (post){
+    if(!post){
+        return null;
+    }
     if(!post.hasOwnProperty("title") || !post.hasOwnProperty("content") || !post.hasOwnProperty("image")){
         return null;
     } 

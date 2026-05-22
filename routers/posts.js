@@ -1,0 +1,16 @@
+import { Router } from "express";
+import express from "express";
+
+const postsRouter = express.Router();
+
+postsRouter.get("/", postsController.index);
+
+postsRouter.get("/:id", postsController.show);
+
+postsRouter.post("/", postsController.store);
+
+postsRouter.put("/:id", postsController.update);
+
+postsRouter.patch("/:id", postsController.modify);
+
+postsRouter.delete("/:id", postsController.destroy);

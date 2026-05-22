@@ -1,5 +1,5 @@
 
-const postsRouter = {
+const postsController = {
     index,
     show,
     store,
@@ -32,4 +32,4 @@ function destroy(request, response) {
 
 }
 
-export default postsRouter;
+export default postsController;

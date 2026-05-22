@@ -67,14 +67,24 @@ function store(request, response) {
 }
 
 function update(request, response) {
-
+    response.json({
+        error:null,
+        result: "Bravo hai fatto una put"
+    })
 }
 
 function modify(request, response) {
-
+    response.json({
+        error:null,
+        result: "Bravo hai fatto una patch"
+    })
 }
 
 function destroy(request, response) {
+    response.json({
+        error:null,
+        result: "Bravo hai fatto una delete"
+    })
 
 }
 

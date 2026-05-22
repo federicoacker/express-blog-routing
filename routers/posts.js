@@ -3,6 +3,7 @@ import express from "express";
 import postsController from "../controllers/posts.js";
 
 const postsRouter = express.Router();
+postsRouter.use(express.json());
 
 postsRouter.get("/", postsController.index);
 

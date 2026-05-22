@@ -31,4 +31,20 @@ const blogPosts = [
     }
 ]
 
-export default blogPosts;
+function validatePost (post){
+    if(!post.hasOwnProperty("title") || !post.hasOwnProperty("content") || !post.hasOwnProperty("image")){
+        return null;
+    } 
+
+    for(const property of Object.entries(post)){
+        if (property[1].trim() === ""){
+            return null;
+        }
+    }
+
+    return post;
+}
+export {
+    blogPosts,
+    validatePost
+}

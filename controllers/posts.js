@@ -1,4 +1,4 @@
-import blogPosts from "../data/blogPosts.js";
+import { blogPosts, validatePost } from "../data/blogPosts.js";
 
 const postsController = {
     index,
@@ -24,7 +24,7 @@ function show(request, response) {
     const id = request.params.id;
     const convertedId = parseInt(id);
 
-    if(isNaN(convertedId) || convertedId < 0){
+    if (isNaN(convertedId) || convertedId < 0) {
         return response.status(400).json({
             error: "L'id inserito non è in un formato valido",
             result: []
@@ -33,7 +33,7 @@ function show(request, response) {
 
     const foundPost = blogPosts.find(post => post.id === convertedId);
 
-    if(!foundPost){
+    if (!foundPost) {
         return response.status(404).json({
             error: "Non abbiamo trovato nessun post con quell'id",
             result: []
@@ -41,14 +41,29 @@ function show(request, response) {
     }
 
     response.json({
-        error:null,
-        result:foundPost
+        error: null,
+        result: foundPost
     })
 
 }
 
 function store(request, response) {
-
+    const objectReceived = request.body;
+    const validatedObject = validatePost(objectReceived);
+    if (!validatedObject) {
+        return response.status(400).json({
+            error: "Oggetto invalido passato al server",
+            result: []
+        })
+    }
+    blogPosts.push({
+        ...validatedObject,
+        id: blogPosts.length + 1
+    });
+    response.json({
+        error: null,
+        result: blogPosts
+    })
 }
 
 function update(request, response) {

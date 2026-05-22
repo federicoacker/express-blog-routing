@@ -1,3 +1,4 @@
+import blogPosts from "../data/blogPosts.js";
 
 const postsController = {
     index,
@@ -10,9 +11,39 @@ const postsController = {
 
 function index(request, response) {
 
+    response.json(
+        {
+            error: null,
+            result: [blogPosts]
+        }
+    )
+
 }
 
 function show(request, response) {
+    const id = request.params.id;
+    const convertedId = parseInt(id);
+
+    if(isNaN(convertedId) || convertedId < 0){
+        return response.status(400).json({
+            error: "L'id inserito non è in un formato valido",
+            result: []
+        });
+    }
+
+    const foundPost = blogPosts.find(post => post.id === convertedId);
+
+    if(!foundPost){
+        return response.status(404).json({
+            error: "Non abbiamo trovato nessun post con quell'id",
+            result: []
+        })
+    }
+
+    response.json({
+        error:null,
+        result:foundPost
+    })
 
 }
 

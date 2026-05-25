@@ -60,7 +60,7 @@ function store(request, response) {
         ...validatedObject,
         id: blogPosts.length + 1
     });
-    response.json({
+    response.status(201).json({
         error: null,
         result: blogPosts
     })
